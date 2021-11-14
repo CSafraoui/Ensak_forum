@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8"/>
+  <title>Entreprises</title>
+	<div th:replace="EtudiantCommon :: head "></div>
+	<link rel="stylesheet" type="text/css" href="../static/css/stylesub.css"
+		  th:href="@{css/stylesub.css}" />
+
+
+</head>
+
+
+
+  <!-- ======= Header ======= -->
+
+<div th:replace="EtudiantCommon :: header "></div>
+
+  <body>
+
+
+
+
+
+
+  <form role="search" id="searchform" class="searchform" th:action=@{SearchMine} method="post" _lpchecked="1">
+
+	  <div class="searchboxwrapper">
+		  <input name="desc" th:value="${desc}" class="searchbox" type="text" placeholder="Search for Post" id="s">
+
+		  <input class="searchsubmit" th:style="'background: #d0bcfc;'" type="submit" id="searchsubmit" value="">
+	  </div>
+  </form>
+  <div class="container" >
+    <span id="hi" th:if="${books.size == 0}">
+        <ul th:style="'margin: auto;   padding-bottom: 40px;'">
+            <li><h1 class="e" th:style="'padding-top: 30px;height: 100px;font-size: 30px;text-align: center;
+    '">Il y a pas des publications sous ce titre pour le moment</h1></li>
+            <li><img th:src="@{../images/sandglass.png}" id="photo2"></li>
+        </ul>
+            </span>
+	  <span th:if="${books.size != 0}">
+    <div class="" th:each="e, iStat : ${bookPage.content}" th:style="'margin-bottom: 10px;padding: 30px;'">
+        <div class="col-8" >
+            <div class="card card-white post" th:style="'padding: 20px 0px 20px 20px;'">
+                <div class="post-heading" >
+                    <div class="float-left image" >
+                    </div>
+                    <div class="float-left meta a">
+                            <p href="#" th:text="${e.etudiant.nom} +' '+ ${e.etudiant.prenom} "><b></b></p>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p th:style="'margin-left: 35px;margin-right: 10px;'" th:text="${e.titre_post}"></p>
+                    <p th:style="'margin-left: 50px;margin-right: 10px;'" th:text="${e.description}"></p>
+                </div>
+                <div class="a" th:style="'margin-top: 10px;'">
+                    <ul>
+                        <li><a th:href="@{deletePost(id=${e.id_post})}" th:style="''" >Delete</a></li>
+                        <li><a th:href="@{post(id=${e.id_post})}" th:style="''" >Comments</a></li>
+                        <li><p th:style="'padding-right:30px;'" class="text-muted time" th:text="${e.date_pub}"></p></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </span>
+
+  </div>
+
+  <div class="pagination justify-content-end" th:style="'
+display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;padding:30px 60px;'">
+  <div
+	   th:if="${bookPage.totalPages > 0}"
+	   th:each="pageNumber : ${pageNumbers}">
+	  <a th:href="@{/listePosts(size=${bookPage.size}, page=${pageNumber})}"
+		 th:text=${pageNumber}
+		 th:class="${pageNumber==bookPage.number + 1} ? active"></a>
+  </div>
+  </div>
+  <!-- ======= Services Section ======= -->
+
+  <div th:insert="fragments :: footer"></div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Ateliers</title>
+<div th:replace="fragments :: head"></div>
+</head>
+<body>
+	<div th:include="fragments :: navbar"></div>
+  
+    <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+          <h1 th:text="'Bienvenue '+${nom}"><span>.</span></h1>
+          <h4 style="color: #fff;">Vous pouvez gérer les Entreprises, les superviseurs, les conférences, les ateliers, les sponsors.
+        <br>  <br>Vous pouvez également créer des comptes pour les représentants des entreprises.</h4>
+          
+        </div>
+      </div><br><br>
+         <a  class="get-started-btn scrollto">Get Started</a>
+
+    </div>
+  </section><!-- End Hero -->
+		<div th:insert="fragments :: bigFooter"></div>
+	
+</body>
+
+</html>

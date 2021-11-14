@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../static/css/stylesub.css"
+      th:href="@{css/stylesub.css}" />
+
+<head>
+    <meta charset="UTF-8"/>
+    <div th:replace="EtudiantCommon :: head "></div>
+</head>
+
+<body>
+<!-- ======= Header ======= -->
+<div th:replace="EtudiantCommon :: header "></div>
+
+<!-- ======= Features Section ======= -->
+
+<form th:action=@{SaveResponse} method="post">
+<div class="container" th:style="'margin-top: 60px;font-size: 12px;'">
+    <div class="row">
+        <div class="col-8">
+            <div class="card card-white post" th:style="'    padding: 0px 10px 0px 10px;'" th:each="e: ${post}">
+
+                    <input name="post" th:value="${post.id_post}" hidden />
+                <div class="post-heading" >
+                    <div class="float-left image" >
+                    </div>
+                    <div class="float-left meta" >
+                        <div class="title h5">
+                            <p href="#"  th:text="${e.etudiant.nom} +' '+ ${e.etudiant.prenom}" th:style="'font-size: large;color: #8F5EF7;'"><b></b></p>
+
+                        </div>
+                        <h6 class="text-muted time" th:text="${e.date_pub}"></h6>
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p th:style="'font-size:13px;'" th:text="${e.description}"></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel" >
+
+        <div class="panel-body" th:style="' padding :15px 15px 15px 0px; '">
+            <textarea name="description" th:value="${description}" class="form" th:style="'width:400px;height:60px;padding: 7px;'"  placeholder="What are you thinking?"></textarea>
+            <div class="mar-top clearfix">
+                <button th:style="'    margin-top: 10px;'" class="btn btn-sm btn-primary" type="submit"><i class="fa fa-pencil fa-fw"></i>Comment</button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<div class="container" th:style="'    margin-bottom: 30px;'">
+    <div class="row">
+        <div class="col-md-8" th:style="'margin-left: 20px;'">
+            <div class="" th:style="'font-size: 12px;'">
+                <p><p class="pull-right" th:text="${number}"></p> Comments </p>
+            </div>
+            <div class="comments-list" th:each="e: ${response}" th:style="'margin-left: 30px;'">
+                <div class="media">
+                    <div class="post-heading" >
+                        <div class="float-left image" >
+                        </div>
+                        <div class="float-left meta" th:style="'padding-right: 20px;
+    text-align: center;'">
+                            <p class="title h5">
+                                <p href="#"  th:text="${e.etudiant.nom} + ${e.etudiant.prenom}" th:style="'font-size: 15px;color: #8F5EF7;'">><b></b></p>
+                            </p>
+                            <p class="text-muted time" th:text="${e.date_pub}"></p>
+                        </div>
+                        <div class="post-description" th:style="'margin-left: 30px;padding-left: 100px;
+    font-size: 12px;
+    padding-top: 20px;'">
+                            <p th:style="'font-size: 12px;'" th:text="${e.description}"></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<div th:replace="EtudiantCommon::foot"></div>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="EtudiantCommon :: head "></div>
+    <link href="../css/register.css" rel="stylesheet">
+
+ </head>
+
+<body>  
+
+<!-- ======= Header ======= -->
+<div th:replace="EtudiantCommon :: header "></div>
+
+<!-- ======= Services Section ======= -->
+
+<div class="container1">
+
+    <form th:action=@{update_profil} method="post" id="signup">
+
+        <div class="header">
+            <h3>Editer votre profile</h3>
+            <!--p>You want to fill out this form</p-->
+        </div>
+        <div class="sep"></div>
+
+        <div class="inputs">
+        
+            <input type="email" name="login" th:value="${etudiant.login}" placeholder="e-mail" autofocus />
+			<input type="hidden" name="id_user" th:value="${etudiant.id_user}">
+            <input type="password" name="password" th:value="${etudiant.password}" placeholder="Password" />
+			<input type="text"  name="nom" th:value="${etudiant.nom}" placeholder="nom" />
+			<input type="text"  name="prenom" th:value="${etudiant.prenom}" placeholder="prenom" />
+			<input type="hidden"  name="img" th:value="${etudiant.img}" />
+			<input type="hidden"  name="cv" th:value="${etudiant.cv}" />
+			
+			
+             <label class="terms" for="ecole">Choose your school:</label>
+				
+			<select name="ecole" th:value="${etudiant.ecole}" id="ecole">
+				
+				  <option value="ensak">ENSAK</option>
+				  
+			</select>
+				
+			<label  class="terms" for="niveau">Choose your level:</label>
+				
+			<select name="niveau" th:value="${etudiant.niveau}" id="niveau">
+				  <option value="1er annee cp">1er annee cp</option>
+				  <option value="2eme annee cp">2eme annee cp</option>
+				  <option value="1er annee CI">1er annee CI</option>
+				  <option value="2eme annee CI">2eme annee CI</option>
+				  <option value="3eme annee CI">3eme annee CI</option>
+				  <option value="1er annee Master">1er annee Master</option>
+				  <option value="2eme annee Master">2eme annee Master</option>
+			</select>
+				
+			<label  class="terms" for="filiere">Choose your branch:</label>
+			
+			<select name="filiere" th:value="${etudiant.filiere}" id="filiere">
+				
+				  <option value="cp">cycle preparatoire</option>
+				  <option value="Genie informatique">Genie informatique</option>
+				  <option value="Genie industruelle">Genie industruelle</option>
+				  <option value="Genie electrique">Genie electrique</option>
+				  <option value="Genie mecatronique">Genie mecatronique</option>
+				  <option value="Genie reseaux">Genie reseaux</option>
+				  <option value="Master securite ">Master securite </option>
+			</select>
+				
+			
+      
+			<button type="submit" id="submit" style="background-color:#c90e88;">Editer</button>
+            
+            
+        
+        </div>
+
+    </form>
+
+</div>
+<br/><br/><br/>
+<!-- ======= Footer ======= -->
+<div th:replace="EtudiantCommon::foot"></div>
+</body>
+
+</html>

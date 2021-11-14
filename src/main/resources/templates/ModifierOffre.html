@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<title>Offres</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="../static/css/modifier.css"
+	th:href="@{css/modifier.css}" />
+	<div th:replace="fragment :: head"></div>
+</head>
+<body>
+<div th:include="fragment :: navbar"></div>
+	<div layout:fragment="content" th:style="'margin-top: 100px;'">
+		<div th:style="'    width: 500px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 50px 450px 50px 450px;
+    font-size: 20px;
+    font-weight: 100;
+    '">
+			<div class="panel panel-default">
+				<div class="panel-heading" th:style="'font-size: 15px;
+    font-weight: 150;'">Modifier une offre</div>
+				<div class="panel-body">
+					<form th:action=@{modifieroffre} method="post">
+						<div class="form-group">
+								<input class="form-control" th:style="'font-size: 15px;
+    font-weight: 100;'" th:value="${offre.id_offre}" type="hidden" name="id_offre"/>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Titre : </label> <input
+									class="form-control" type="text" name="titre_offre"
+									th:value="${offre.titre_offre}" th:style="'font-size: 15px;
+    font-weight: 80;'" required="required" />
+									 <span th:errors="${offre.titre_offre}" class="red"></span>
+							</div>
+							<div class="form-group">
+								<label class="control-label">Description :
+								</label> <textarea rows="8" cols="20" class="form-control" type="text" name="description"
+												th:style="'font-size: 15px;
+    font-weight: 80;'" th:text="${offre.description}" required="required"></textarea>
+								<span th:errors="${offre.description}" class="red"></span>
+							</div>
+
+
+							<button class="btn btn-dark" th:style="'color: #8E90E7;
+  margin: 10px;
+  text-align: center;
+  width: 80px;
+  front-size: 40px;
+  font-weight: bold;'" type="submit">Modifier</button>
+					</form>
+
+
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+<div th:insert="fragment :: bigFooter" ></div>
+</body>
+
+</html>

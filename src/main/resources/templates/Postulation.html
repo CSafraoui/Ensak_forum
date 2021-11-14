@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="utf-8" />
+    <title>Offres</title>
+    <link rel="stylesheet" type="text/css"
+          href="../static/css/bootstrap.min.css"
+          th:href="@{css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="../static/css/modifier.css"
+          th:href="@{css/modifier.css}" />
+    <link href="../offre/style.css" rel="stylesheet">
+    <script th:src="@{../offre/offre.js}"></script>
+    <div th:replace="fragment :: head"></div>
+</head>
+<body>
+<div th:include="fragment :: navbar"></div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="container" th:style="'margin-top: 70px;'">
+
+
+    <span th:if="${postulation.size == 0}">
+
+            <h1 class="e" th:style="'height: 100px;'">
+                Il y a pas d'offre pour le moment
+                <img th:src="@{../images/sandglass.png}" id="photo2">
+
+            </h1>
+            </span>
+    <span th:if="${postulation.size != 0}">
+    <h1 class="e" id="liste">Liste des postulations</h1>
+    <div class="row text-center" id="a" th:with="v=${0}">
+
+        <div class="col-md-4 card-container" th:each="p: ${postulation}" th:style="'height: 150px;width: 250px;'">
+
+            <div class="card card-flip" th:with="v=${p.id_postulation.id_etudiant}" th:style="'height: 150px;width: 250px;'">
+                <span th:each="e: ${etudiants}">
+                    <span th:if="${e.id_user == v}">
+                <div class="front card-block" th:style="'height: 150px;'">
+                        <span class="card-img-top fa" style="font-size: 4em"><img
+                                th:src="@{../images/knowledge1.png}" id="photo" th:style="'width: 40px;height: 40px;'"></span>
+                    <h1 class="card-title" th:text="${e.nom}+' '+${e.prenom}"></h1>
+                </div>
+                <div class="back card-block" >
+                    <div id="c" style="height: auto;">
+                        <a th:href="@{Profile(id=${p.id_postulation.id_etudiant})}" class="btn btn-dark"><h5>Profil</h5></a>
+                        </div>
+                </div>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+        </span>
+
+</div>
+
+
+
+
+
+
+
+<div th:insert="fragment :: bigFooter" th:style="'margin-top: 106px'"></div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

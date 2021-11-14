@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Ateliers</title>
+<div th:replace="fragments :: head"></div>
+</head>
+<body>
+	<div th:include="fragments :: navbar"></div>
+	<section id="hero" class="d-flex align-items-center justify-content-center">
+		<div class="col-md-6 col-xs-12">
+			<div class="panel panel-default" id="taille">
+				<div class="panel-heading" style="text-align: center; font-size: 15px;">Ajouter un Atelier</div>
+				<div class="panel-body" >
+					<form th:action=@{saveAtelier} method="post">
+						<div class="form-group">
+							<div class="form-group">
+								 <input placeholder="Titre"
+									class="form-control" type="text" name="titreAtelier"
+									required="required" />
+									 <span th:errors="${atelier.titreAtelier}" class="red"></span>
+							</div>
+							<div class="form-group">
+								<input placeholder="Description" class="form-control" type="text" name="descriptionAtelier"
+									required="required" /> 
+								<span th:errors="${atelier.descriptionAtelier}" class="red"></span>
+							</div>
+							<div class="form-group">
+								<input class="form-control" placeholder="Horaire" type="datetime-local" name="horaireAtelier"
+									required="required" />
+
+							</div>
+							<div class="form-group">
+								<label class="control-label">Superviseur : </label>
+								<select name="superviseur"  class="form-control">
+									<option th:each="lists: ${lists}"  th:value="${lists.id_super}" th:text="${lists.nomSuper}"></option>
+								
+								</select>
+							</div>
+							
+							<button class="chercherbtn" type="submit">Ajouter</button>
+							</div>
+					</form>
+
+				</div>
+				</div>
+
+			</div>
+  </section><!-- End Hero -->
+		<div th:insert="fragments :: footer"></div>
+	
+</body>
+
+</html>

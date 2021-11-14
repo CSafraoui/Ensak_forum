@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  
+<meta charset="utf-8"/>
+  <title>Entreprises</title>
+   <div th:replace="fragments :: head"></div>
+</head>
+
+
+
+  <!-- ======= Header ======= -->
+<div th:include="fragments :: navbar"></div>
+  
+  <body>
+		<br/><br/><br/><br/><br/><br/>
+		<div class="container">
+		<h3 id="bienvenue"  th:text="'Bienvenue '+${nom}"></h3>
+		<div class="row">
+ 			 <div class="col-md-10">
+  				<form th:action="@{listEntreprises}" method="get">
+					
+					<select name="searchBy">
+						<option value="nomE" th:selected="(${searchBy} == 'nomE')">Nom de l'entreprise</option>
+						<option value="activiteE" th:selected="(${searchBy} == 'activiteE')">Secteur d'activité</option>
+						<option value="adresseE" th:selected="(${searchBy} == 'adresseE')">Ville</option>
+								
+					</select><br>
+					<input type="text" name="mc" th:value="${motCle}" placeholder="Search"/>
+					<button class="chercherbtn">Chercher</button>
+	
+				</form>	
+			</div>
+
+		<div class="col-md-2">
+			
+			<a th:href="@{listEntreprises}" class="chercherbtn">Afficher tout</a><br><br>
+			<a th:href="@{ajouter}" class="chercherbtn"> Ajouter</a>
+		</div>
+	</div>
+</div>
+	
+				<!-- ======= Services Section ======= -->
+    	<div class="container" id="fs">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Logo</th>
+						<th>Entreprise</th>
+						<th>Activité</th>
+						<th>Adresse</th>
+						<th>Email</th>
+					</tr>
+				<tbody>
+					<tr th:each="e: ${pageEntreprise}">
+						<td><img th:alt="${e.logoE}" th:src="@{'images/'+${e.logoE}}" style="width:100px;height:100px"/> </td>
+						<td th:text="${e.nomE}"></td>
+						<td th:text="${e.activiteE}"></td>
+						<td th:text="${e.adresseE}"></td>
+						<td th:text="${e.emailE}"></td>
+						<td onclick="return confirm('Etes-vous sure?')"><a
+							th:href="@{deleteEntreprise(id=${e.idEntreprise})}">Supprimer</a></td>
+						<td ><a th:href="@{editEntreprise(id=${e.idEntreprise})}">Editer</a></td>
+
+					</tr>
+				</tbody>
+				</thead>
+			</table>
+
+
+		<div>
+			<ul class="nav nav-pills">
+			<!-- status contient les infos du tableau(index,size,.. -->
+			<!-- th:class pour appliquer une class css(active) si une condition(${pageCourante}==${status.index}) est verifiee -->
+				<li th:class="${pageCourante}==${status.index}?'active':''" 
+					th:each="pa,status:${totalPages}"><a
+					th:href="@{listEntreprises(page=${status.index},size=${size},mc=${motCle})}"
+					th:text="${status.index}"></a></li>
+
+			</ul>
+		</div>
+				</div>
+				<div th:insert="fragments :: footer"></div>
+</body>
+
+</html>

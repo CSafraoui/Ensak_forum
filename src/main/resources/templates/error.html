@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout" th:style="'background: linear-gradient(aliceblue, #8E90E7);height: 625px;
+'">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Error</title>
+
+    <script th:src="@{../error/error.js}"></script>
+    <link href="../error/style.css" rel="stylesheet"/>
+
+
+</head>
+<body>
+<div th:style="'    text-align: center;
+    margin: 200px 0px 0px 0px;
+    font-size: 25px;
+    font-family: fantasy;'">
+    <div class="text"><h1>Something went wrong!</h1></div>
+<div class="text"><h3>Our Engineers are on it</h3></div>
+<div ><a th:href="@{/}"  th:style="'background-color:  black;
+  color:#8E90E7;
+    border-radius: 10px;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;'">Go Home</a></div>
+</div>
+</body>
+</html>

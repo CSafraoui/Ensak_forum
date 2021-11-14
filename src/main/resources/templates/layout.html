@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+<meta charset="utf-8">
+<title>Gestion d'entreprises</title>
+
+</head>
+<body>
+	<header>
+		<div class="navbar navbar-inverse">
+			<div class="container-fluid">
+				<ul class="nav navbar-nav ">
+					<li><a th:href="@{listEntreprises}">Entreprises</a></li>
+					<li><a th:href="@{listSuperviseurs}">Superviseurs</a></li>
+					<li><a th:href="@{listConference}">Conferences</a></li>
+					<li><a th:href="@{listAtelier}">Ateliers</a></li>
+					<li><a th:href="@{listSponsor}">Sponsors</a></li>
+					<li><a th:href="@{ajouterRep}">Representant</a></li>
+				</ul>
+			</div>
+		</div>
+
+	</header>
+	<section layout:fragment="content">
+	</section>
+	
+	
+	
+
+</html>

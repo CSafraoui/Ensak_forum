@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Representant</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+
+
+    <!--Custom CSS-->
+    <link href="../offre/style.css" rel="stylesheet">
+    <script th:src="@{../offre/offre.js}"></script>
+    <div th:replace="fragment :: head"></div>
+</head>
+<body>
+<div th:include="fragment :: navbar"></div>
+
+<section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+            <div class="col-xl-6 col-lg-8">
+                <h1 th:text="'Bienvenue '+${nom}"><span>.</span></h1>
+                <h4 style="color: #fff;">Vous pouvez gérer les Offres,
+                    <br>  <br>Vous pouvez également consulter les postulations de chaque offre.</h4>
+            </div>
+        </div><br><br>
+
+
+    </div>
+</section><!-- End Hero -->
+<div>
+    <section id="liste" class="d-flex align-items-center justify-content-center">
+    <!-- Visit https://codepen.io/nicolaskadis/full/brQEOd/ for the latest, no js version! -->
+    <div class="container" >
+        <h1 class="e" >Liste des offres</h1>
+
+        <div class="row text-center" id="a" >
+            <div class="col-md-4 card-container" th:each="e: ${L}">
+                <div class="card card-flip" >
+                    <div class="front card-block">
+                        <span class="card-img-top fa" style="font-size: 4em"><img
+                                th:src="@{../images/knowledge1.png}" id="photo"></span>
+                        <h1 class="card-title" th:text="${e.titre_offre}"></h1>
+                        <h3 class="card-subtitle text-muted" th:text="${e.date_pub}"></h3>
+                    </div>
+                    <div class="back card-block" >
+                        <h5 th:text="${e.description}"></h5>
+                        <div id="c" style="height: auto;">
+                            <a th:href="@{ModifierOffre(id=${e.id_offre})}" class="btn btn-dark"><h5>Modifier</h5></a>
+                            <a class="btn btn-dark" th:href="@{deleteoffre(id=${e.id_offre})}"><h5>Supprimer</h5></a>
+                            <a th:href="@{AfficherPostulation(id=${e.id_offre})}" class="btn btn-dark"><h5>Postulation</h5></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+    </section>
+</div>
+<div th:insert="fragment :: bigFooter"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Sponsors</title>
+  <div th:replace="fragments :: head"></div>
+</head>
+<body>
+	<div th:include="fragments :: navbar"></div>
+	<br/><br/><br/><br/><br/><br/>
+	<div class="container">
+		<h3 id="bienvenue"  th:text="'Bienvenue '+${nom}"></h3>
+		<div class="row">
+ 			 <div class="col-md-10">
+				<form th:action="@{listSponsor}" method="get">
+				<input type="text" name="mc" th:value="${motCle}" placeholder="Search" />
+				<button class="chercherbtn">Chercher</button>	
+			</form>
+			</div>
+			<div class="col-md-2">
+			<a th:href="@{ajouterSponsor}" class="chercherbtn"> Ajouter</a><br><br>
+				<a th:href="@{listSponsor}" class="chercherbtn">Afficher tout</a>
+		</div>
+		</div>
+		<div class="container" id="fs">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Logo</th>
+						<th>Nom Sponsor</th>
+						<th>A propos</th>
+					</tr>
+				<tbody>
+					<tr th:each="e: ${pageSponsor}">
+						<td><img th:alt="${e.logoSponsor}" th:src="@{'images/'+${e.logoSponsor}}" style="width:100px;height:100px"/> </td>
+						<td th:text="${e.nomSponsor}"></td>
+						<td th:text="${e.aproposSponsor}"></td>
+						<td onclick="return confirm('Etes-vous sure?')"><a
+							th:href="@{deleteSponsor(id=${e.idSponsor})}">Supprimer</a></td>
+						<td ><a th:href="@{editSponsor(id=${e.idSponsor})}">Editer</a></td>
+
+					</tr>
+				</tbody>
+				</thead>
+			</table>
+		</div>
+
+		<div>
+			<ul class="nav nav-pills">
+				<li th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="pa,status:${totalPages}"><a
+					th:href="@{listSponsor(page=${status.index},size=${size},mc=${motCle})}"
+					th:text="${status.index}"></a></li>
+
+			</ul>
+		</div>
+	</div>
+	<div th:insert="fragments :: footer"></div>
+</body>
+
+</html>

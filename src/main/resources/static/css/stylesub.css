@@ -1,0 +1,117 @@
+.hello a:hover {
+color: #8f5ef7;
+font-size: 20px;
+}
+.a ul{
+float:right;
+}
+.a ul li {
+    /* other styles goes here... */
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    padding-right:20px;
+}
+.a ul li a:hover{
+color: #8f5ef7;
+}
+
+$input-bg-color: #6045ff;
+$input-text-color: #fff;
+$animation-bounce: cubic-bezier(0.4, -1, 0.6, 2);
+
+@keyframes blink {
+	49% { opacity: 0; }
+	50% { oppacity: 1; }
+	51% {	oppacity: 1; }
+	52% {	opacity: 0; }
+}
+
+.searchform div {
+    margin: 30px 60px 30px 10px;
+float: right;
+height: 26px;
+width: 193px;
+}
+
+.searchboxwrapper {
+position: relative;
+}
+
+.searchbox {
+border: 1px solid #dadada;
+outline: none;
+font: 11px 'Montserrat', sans-serif;
+color: #777;
+width: 182px;
+height: 26px;
+background: #fff;
+padding-left: 10px;
+}
+
+.searchsubmit {
+font-family: 'FontAwesome';
+width: 29px;
+height: 29px;
+border: 1px solid #dadada;
+font-size: 12px;
+position: absolute;
+top: 0;
+right: 0;
+background: #dadada;
+border: none;
+color: #5d3250;
+cursor: hand; cursor: pointer;
+}
+.container{
+margin:auto;
+}
+
+#photo2{
+width: 100px;
+}
+
+#hi{
+margin-top:100px;
+margin-bottom:100px;
+}
+
+#hi ul{
+display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  padding-top: 100px;
+  list-style-type: none;
+}
+@media (max-width: 1300px) {
+  #hi ul {
+    flex-direction: column;
+    list-style-type: none;
+  }
+}
+@media (max-width: 770px) {
+  #photo2 {
+  display:none;
+  }
+  #hi ul{
+  height:400px;
+  }
+}
+
+#hi ul li {
+    /* other styles goes here... */
+    font-size: 12px;
+
+}
+
+.pagination a{
+background-color: #d0bcfc;
+padding: 10px;
+font-size: 20px;
+    font-weight: 800;
+    margin: 5px;
+    border-radius:10px;
+    color: #8f5ef7;
+}
+

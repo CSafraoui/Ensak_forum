@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Superviseurs</title>
+<div th:replace="fragments :: head"></div>
+</head>
+<body>
+<div th:include="fragments :: navbar"></div>
+	<section id="hero" class="d-flex align-items-center justify-content-center">
+		<div class="col-md-6 col-xs-12 fs">
+			<div class="panel panel-default" >
+				<div class="panel-heading" style="text-align: center;font-size: 15px;">Ajouter un superviseur</div>
+				<div class="panel-body" >
+					<form th:action=@{saveSuperviseur} method="post">
+						<div class="form-group">
+							<div class="form-group">
+						<input
+									class="form-control" type="text" placeholder="Nom" name="nomSuper" required="required"
+									 />
+									 <span th:errors="${s.nomSuper}" class="red"></span>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" placeholder="Prénom" name="prenomSuper" required="required"
+									 /> 
+								<span th:errors="${s.prenomSuper}" class="red"></span>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="text" placeholder="A propos" name="aproposSuper" required="required"
+									 />
+									<span th:errors="${s.aproposSuper}" class="red"></span>
+							</div>
+							
+							<button class="chercherbtn" type="submit">Ajouter</button>
+							</div>
+					</form>
+
+				</div>
+				</div>
+
+			</div>
+  </section><!-- End Hero -->
+		<div th:insert="fragments :: footer"></div>
+</body>
+
+</html>

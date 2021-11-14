@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="utf-8" />
+    <title>Offre</title>
+    <link rel="stylesheet" type="text/css"
+          href="../static/css/bootstrap.min.css"
+          th:href="@{css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css"
+          th:href="@{css/style.css}" />
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="spacer col-md-6 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Ajoute une Offre</div>
+            <div class="panel-body">
+                <form th:action=@{saveoffre} method="post">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label class="control-label">Titre : </label> <input
+                                class="form-control" type="text" name="titre_offre"
+                                required="required" />
+                            <!--
+                           <span th:errors="${offre.titre_offre}" class="red"></span>-->
+                       </div>
+                       <div class="form-group">
+                           <label class="control-label">Description :
+                           </label> <input class="form-control" type="text" name="description"
+                                           required="required" />
+                           <!--
+                           <span th:errors="${offre.description}" class="red"></span>-->
+                        </div>
+                        <!--
+                        <div class="form-group">
+                            <label class="control-label">Horaire : </label>
+                            <input class="form-control" type="datetime-local" name="date"
+                                   required="required" />
+                        </div>
+                        -->
+
+                        </div>
+
+
+                        <button class="btn btn-primary" type="submit">Ajouter</button>
+                </form>
+
+<
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

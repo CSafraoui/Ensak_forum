@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<div th:replace="EtudiantCommon :: head"></div>
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <div th:replace="EtudiantCommon :: header"></div>
+  
+  <!-- ======= message alert =========== -->
+  <div class="msg" th:if="${msg}=='echoue'">
+	  <p>
+		  <div class="alert">
+		  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+		  <strong>Attention ! vous êtes déjà inscrit dans cette atelier !!!</strong> 
+		  </div>
+	 </p>
+  </div>
+ 
+  <div class="msg" th:if="${msg}=='reussie'">
+	  <p>
+		  <div class="good">
+		  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+		  <strong>Votre inscription à bien été effectué.</strong> 
+		  </div>
+	  </p>
+  </div>
+  <!-- =======fin message alert =========== -->
+
+ <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Les ateliers</h2>
+          <p>Consulter nos Ateliers</p>
+        </div>
+
+        <div class="row">
+          <div th:each="a: ${ateliers}"  class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box" >
+              <!--div class="icon"><i class="bx bxl-dribbble"></i></div-->
+              <h4 th:text="${a.titreAtelier}"><a href="">titre </a></h4>
+              <!--p th:text="${offre.description}">(description)</p-->
+			   <p>
+					      <span th:text="${a.descriptionAtelier}"></span><br/>
+					      <a th:href="@{consulter_atelier(id=${a.idAtelier})}"><strong>Details</strong></a>
+				</p>
+				<br/>
+				<br/>
+				<a th:href="@{inscrire_atelier(id_atelier=${a.idAtelier})}" style="background-color:#4000FF;" class="btn btn-primary" id="btna" >s'inscrire</a>
+			  
+            </div>
+          </div>
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+  <!-- ======= Footer ======= -->
+  <div th:replace="EtudiantCommon::foot"></div>
+</body>
+
+</html>

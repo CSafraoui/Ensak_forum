@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="utf-8" />
+    <title>Postulations</title>
+    <link rel="stylesheet" type="text/css"
+          href="../static/css/bootstrap.min.css"
+          th:href="@{css/bootstrap.min.css}" />
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <form th:action="@{listeOffres}" method="get">
+            <a th:href="@{listePostulation}">Afficher tout</a>
+
+
+        </form>
+    </div>
+    <div class="container">
+        <table class="table table-striped table-primary">
+            <thead class="ttop">
+            <tr class="table-info">
+                <td width="20px"><b>Titre</b></td>
+                <td><b>Description</b> </td>
+                <td><b>Date de publication</b></td>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="e: ${L}">
+                <td width="20px" th:text="${e.titre_offre}">
+                </td><td th:text="${e.description}">
+            </td><td th:text="${e.date_pub}">
+            </td>
+                <td onclick="return confirm('Etes-vous sure?')">
+                    <a th:href="@{deletepostulation(id=${e.id_offre})}">Delete</a></td>
+                <td ><a th:href="@{acceptpostulation(id=${e.id_offre})}">Accept</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--
+        <div>
+            <ul class="nav nav-pills">
+                <li th:class="${pageCourante}==${status.index}?'active':''"
+                    th:each="pa,status:${totalPages}"><a
+                        th:href="@{listAtelier(page=${status.index},size=${size},mc=${motCle})}"
+                        th:text="${status.index}"></a></li>
+
+            </ul>
+        </div>-->
+</div>
+</body>
+
+</html>

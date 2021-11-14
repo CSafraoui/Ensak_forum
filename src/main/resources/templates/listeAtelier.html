@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Ateliers</title>
+  <div th:replace="fragments :: head"></div>
+</head>
+<body>
+	<div th:include="fragments :: navbar"></div>
+	<br/><br/><br/><br/><br/><br/>
+		<div class="container">
+			<h3 id="bienvenue"  th:text="'Bienvenue '+${nom}"></h3>
+	<div class="row">
+ 		<div class="col-md-10">
+			<form th:action="@{listAtelier}" method="get">
+			<input type="text" name="mc" th:value="${motCle}"  placeholder="Search"/>
+				<button class="chercherbtn">Chercher</button>
+			</form>
+		</div>
+		
+		<div class="col-md-2">
+				<a th:href="@{ajouterAtelier}" class="chercherbtn"> Ajouter</a><br><br>
+				<a th:href="@{listAtelier}" class="chercherbtn">Afficher tout</a>
+		</div>
+		</div>
+		<div class="container" id="fs">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Description</th>
+						<th>Horaire</th>
+						<th>Superviseur</th>
+					</tr>
+				<tbody>
+					<tr th:each="e: ${pageAtelier}">
+						<td th:text="${e.titreAtelier}"></td>
+						<td th:text="${e.descriptionAtelier}"></td>
+						<td th:text="${e.horaireAtelier}"></td>
+						<td>
+							<ul  class= "list-unstyled">
+								<li th:text="${e.superviseurAtelier.nomSuper}"></li>
+								<li th:text="${e.superviseurAtelier.prenomSuper}"></li>
+								<li th:text="${e.superviseurAtelier.aproposSuper}"></li>
+							</ul>
+						</td>
+						<td onclick="return confirm('Etes-vous sure?')">
+						<a th:href="@{deleteAtelier(id=${e.idAtelier},page=${p},size=${size},mc=${motCle})}">Supprimer</a></td>
+						<td ><a th:href="@{editAtelier(id=${e.idAtelier},page=${p},size=${size},mc=${motCle})}">Editer</a></td>
+
+					</tr>
+				</tbody>
+				</thead>
+			</table>
+		</div>
+
+		<div>
+			<ul class="nav nav-pills">
+				<li th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="pa,status:${totalPages}"><a
+					th:href="@{listAtelier(page=${status.index},size=${size},mc=${motCle})}"
+					th:text="${status.index}"></a></li>
+
+			</ul>
+		</div>
+	</div>
+	<div th:insert="fragments :: footer"></div>
+</body>
+
+</html>

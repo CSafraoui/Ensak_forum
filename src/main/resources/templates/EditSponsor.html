@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Sponsors</title>
+<div th:replace="fragments :: head"></div>
+</head>
+<body>
+<div th:include="fragments :: navbar"></div>
+	<section id="hero" class="d-flex align-items-center justify-content-center">
+		<div class="col-md-6 col-xs-12 fs">
+			<div class="panel panel-default" >
+				<div class="panel-heading" style="text-align: center;font-size: 15px;">Modifier le Sponsor</div>
+				<div class="panel-body" >
+
+
+					<form th:action=@{saveEditSponsor} method="post" enctype="multipart/form-data">
+						<div class="form-group">
+							<div class="form-group">
+								<input class="form-control" th:value="${sponsor.idSponsor}" type="hidden" name="idSponsor" />
+							</div>
+							<div class="form-group">
+								<label class="control-label">Nom : </label> <input
+									class="form-control" type="text" name="nomSponsor"
+									th:value="${sponsor.nomSponsor}" required="required"/> 
+							</div>
+							<div class="form-group">
+								<label class="control-label">A propos : </label> <input
+									class="form-control" type="text" name="aproposSponsor"
+									th:value="${sponsor.aproposSponsor}" required="required"/> 
+							</div>
+							<div class="form-group">
+								<label class="control-label">Logo : </label> <input
+									class="form-control" type="file" name="logoSponsor" accept="" required="required"/>
+							</div>
+
+							<button class="chercherbtn" type="submit">Editer</button>
+							</div>
+					</form>
+
+				</div>
+				</div>
+
+			</div>
+  </section><!-- End Hero -->
+		<div th:insert="fragments :: footer"></div>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <title>Superviseurs</title>
+  <meta charset="utf-8"/>
+  <div th:replace="fragments :: head"></div>
+</head>
+<div th:include="fragments :: navbar"></div>
+<body>
+	<br/><br/><br/><br/><br/><br/>
+		<div class="container">
+		<h3 id="bienvenue"  th:text="'Bienvenue '+${nom}"></h3>
+		<div class="row">
+ 			 <div class="col-md-10">
+			<form th:action="@{listSuperviseurs}" method="get">
+			<input type="text" name="mc" th:value="${motCle}" placeholder="Search"/>
+				<button class="chercherbtn">Chercher</button>
+
+			</form>
+		</div>
+		<div class="col-md-2">
+			<a th:href="@{ajouterSuperviseur}" class="chercherbtn"> Ajouter</a><br><br>
+			<a th:href="@{listSuperviseurs}" class="chercherbtn">Afficher tout</a>
+		</div>
+		</div>
+		</div>
+		<div class="container" id="fs">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Prénom</th>
+						<th>A propos</th>
+					</tr>
+				</thead>
+					
+				<tbody>
+					<tr th:each="e: ${pageSuperviseur}">
+						<td th:text="${e.nomSuper}"></td>
+						<td th:text="${e.prenomSuper}"></td>
+						<td th:text="${e.aproposSuper}"></td>
+						<td onclick="return confirm('Etes-vous sure?')"><a
+							th:href="@{deleteSuperviseur(id=${e.id_super})}">Supprimer</a></td>
+						<td ><a th:href="@{editSuperviseur(id=${e.id_super})}">Editer</a></td>
+
+					</tr>
+				</tbody>
+		</table>
+		</div>
+
+		<div>
+			<ul class="nav nav-pills">
+				<li th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="pa,status:${totalPages}"><a
+					th:href="@{listSuperviseurs(page=${status.index},size=${size},mc=${motCle})}"
+					th:text="${status.index}"></a></li>
+
+			</ul>
+		</div>
+		<div th:insert="fragments :: footer"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+  <div th:replace="fragments :: head"></div>
+<title>Conferences</title>
+
+</head>
+<body>
+	<div th:include="fragments :: navbar"></div>
+		<br/><br/><br/><br/><br/><br/>
+		<div class="container">
+		<h3 id="bienvenue"  th:text="'Bienvenue '+${nom}"></h3>
+		<div class="row">
+ 			 <div class="col-md-10">
+			<form th:action="@{listConference}" method="get">
+			<input type="text" name="mc" th:value="${motCle}" placeholder="Search" />
+				<button class="chercherbtn">Chercher</button>
+			</form>
+		</div>
+		<div class="col-md-2">
+				<a th:href="@{ajouterConference}" class="chercherbtn"> Ajouter</a><br><br>
+				<a th:href="@{listConference}" class="chercherbtn">Afficher tout</a>
+		</div>
+		</div>
+		</div>
+		<div class="container"  id="fs">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Description</th>
+						<th>Horaire</th>
+						<th>Superviseur</th>
+					</tr>
+				<tbody>
+					<tr th:each="e: ${pageConference}">
+						<td th:text="${e.titreConf}"></td>
+						<td th:text="${e.descriptionConf}"></td>
+						<td th:text="${e.horaireConf}"></td>
+						<td>
+							<ul  class= "list-unstyled">
+								<li th:text="${e.superviseurConf.nomSuper}"></li>
+								<li th:text="${e.superviseurConf.prenomSuper}"></li>
+								<li th:text="${e.superviseurConf.aproposSuper}"></li>
+							</ul>
+						</td>
+						<td onclick="return confirm('Etes-vous sure?')">
+						<a th:href="@{deleteConference(id=${e.idConf},page=${p},size=${size},mc=${motCle})}">Suprrimer</a></td>
+						<td ><a th:href="@{editConference(id=${e.idConf},page=${p},size=${size},mc=${motCle})}">Editer</a></td>
+
+					</tr>
+				</tbody>
+				</thead>
+			</table>
+		</div>
+
+		<div>
+			<ul class="nav nav-pills">
+				<li th:class="${pageCourante}==${status.index}?'active':''"
+					th:each="pa,status:${totalPages}"><a
+					th:href="@{listConference(page=${status.index},size=${size},mc=${motCle})}"
+					th:text="${status.index}"></a></li>
+
+			</ul>
+		</div>
+<div th:insert="fragments :: footer"></div>
+
+</body>
+
+</html>

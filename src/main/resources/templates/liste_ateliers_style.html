@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<title>workshops</title>
+<link rel="stylesheet" type="text/css" href="../css/style_atelier.css" />
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<form th:action="@{liste_ateliers}" method="get">
+			<label>Search By: </label> 
+				
+					<select name="searchBy">
+									<option value="titreAtelier" >workshop title</option>
+									
+								
+					</select>
+					<!--input type="text" name="mc" th:value="${motCle}" /-->
+				<button class="btn btn-primary">Chercher</button>
+
+
+
+			</form>
+		</div>
+		<div class="container">
+
+				
+					  <ul class="list-group" >
+					    <li class="list-group-item clearfix" th:each="a: ${ateliers}">
+					      <img class="img-responsive img-rounded" src="http://placehold.it/256/163a63" alt="error img"/>
+					      <h3 class="list-group-item-heading" th:text="${a.titreAtelier}">
+					       
+					        <!--span class="label label-danger pull-right">NEW !</span-->
+					      </h3>
+					      <p class="list-group-item-text lead" >
+					      <span th:text="${a.descriptionAtelier}"></span>
+					      <a th:href="@{consulter_atelier(id=${a.idAtelier})}">Details</a>
+					      </p>
+					      <div class="btn-toolbar pull-right" role="toolbar" aria-label="">
+					        
+					        <a th:href="@{inscrire_atelier(id_atelier=${a.idAtelier})}" class="btn btn-primary" id="btna" >register</a>
+					      </div>
+					    </li>
+					    
+					  </ul>
+		</div>
+	
+
+
+	</div>
+</body>
+
+</html>

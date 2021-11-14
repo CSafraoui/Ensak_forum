@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <div th:replace="EtudiantCommon :: head "></div>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <div th:replace="EtudiantCommon :: header "></div>
+
+     <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          <div class="image col-lg-6" style='background-image: url("../assets/img/forum/offre.png");' data-aos="fade-right"></div>
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+          <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+          <i class="bx bx-cube-alt"></i>
+			  <!-- td th:text="${offre.id_offre}"></td -->
+              <h4>Offre : </h4>
+              <p th:text="${offre.titre_offre}">titre</p>
+            </div>
+            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+              <i class="bx bx-cube-alt"></i>
+              <h4>Description : </h4>
+              <p th:text="${offre.description}">description</p>
+            </div>
+            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+            <i class="bx bx-cube-alt"></i>
+              <h4>Date de publication : </h4>
+              <p th:text="${offre.date_pub}">date</p>
+            </div>
+            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+            <i class="bx bx-cube-alt"></i>
+              <h4>Représentant de l'offre</h4>
+              <p th:text="${offre.rep.nom}">representant</p>
+            </div>
+			<td onclick="return confirm('Etes-vous sure?')">
+			<a th:href="@{postuler_offre(id_offre=${offre.id_offre})}" class="get-started-btn scrollto" id="btna" style="background-color:#4000FF;margin-left:10%;">postuler</a>
+			</td>  
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Features Section -->
+
+<div th:replace="EtudiantCommon::foot"></div>
+</body>
+
+</html>

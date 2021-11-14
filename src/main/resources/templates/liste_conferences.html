@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Conferences</title>
+<link rel="stylesheet" type="text/css" href="../css/style_consult.css" />
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div >
+		<div class="container">
+			<form th:action="@{liste_conferences}" method="GET">
+			<label>Search By: </label> 
+				
+					<select name="searchBy">
+									<option value="titreConf" >conference title</option>
+									
+								
+					</select>
+					<!--input type="text" name="mc" th:value="${motCle}" /-->
+				<button class="btn btn-primary">Chercher</button>
+
+
+
+			</form>
+		</div>
+		<div class="container">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>title</th>
+						<th>description</th>
+						<th>time</th>
+						<th>supervisor</th>
+						
+					</tr>
+				<tbody>
+					<tr th:each="c: ${conferences}">
+						<!--td><img alt="" th:src="*{'data:image/png;base64,'+{e.logoE}}" style="width:100px;height:100px"/> </td-->
+						<td th:text="${c.titreConf}"></td>
+						<td th:text="${c.descriptionConf}"></td>
+						<td th:text="${c.horaireConf}"></td>
+						<td th:text="${c.getSuperviseurConf().getNomSuper()}"></td>
+						<td onclick="return confirm('Etes-vous sure?')">
+						<a th:href="@{reserver_conference(id_conf=${c.idConf})}">book a place</a></td>
+						<td ><a th:href="@{consulter_conference(id=${c.idConf})}">consult conference</a></td>
+
+					</tr>
+				</tbody>
+				</thead>
+			</table>
+		</div>
+
+
+	</div>
+</body>
+
+</html>

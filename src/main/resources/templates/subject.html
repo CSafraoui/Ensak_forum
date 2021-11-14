@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="EtudiantCommon :: head "></div>
+    <link rel="stylesheet" type="text/css" href="../static/css/stylesub.css"
+          th:href="@{css/stylesub.css}" />
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<div th:replace="EtudiantCommon :: header "></div>
+
+<!-- ======= Features Section ======= -->
+<section id="features" class="features" th:style="'margin-top: 33px;'">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row" th:with="v=${1}">
+            <table class="table table-striped table-sm">
+                <thead class="ttop" >
+                <tr class="table-info">
+                    <td th:style="'border-color:#d0bcfc;
+    background: #d0bcfc;'" ><b>Titre</b></td>
+                    <td th:style="'border-color:#d0bcfc;
+    background: #d0bcfc;'" ><b>Count</b></td>
+                    <td th:style="'border-color:#d0bcfc;
+    background: #d0bcfc;'" ><b>See Posts</b></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="e: ${cnt}">
+                    <td th:text="${e.sjt}"></td>
+                    <td th:text="${e.nombre}"></td>
+                    <td class="hello">
+                    <a th:href="@{posts(sujet=${e.sjt})}" th:style="'border-color:#d0bcfc;'">Posts</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section><!-- End Features Section -->
+
+<div th:replace="EtudiantCommon::foot"></div>
+</body>
+
+</html>
