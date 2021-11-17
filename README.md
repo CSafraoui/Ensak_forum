@@ -8,9 +8,5 @@ FORUM APPLICATION
 -->importer le projet dans votre eclipse
 -->modifier les informations de la base de donnes dans le Fichier PROPERTIES (.properties):\src\main\resources\
 
-	Spring.datasource.url=jdbc:mysql://localhost:3306/mini_projet_java
-	spring.datasource.username=root
-	spring.datasource.password=
-
 -->executer le projet :(click droit sur le nom du projet->Run as ->Spring boot App)
 -->Accedez au lien suivant depuis le navigateur : http://localhost:8080/
